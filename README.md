@@ -14,7 +14,7 @@ The code is simple and hackable, no more than 500 lines (include html)
 in config.py
 
 ```python
-graphite_url = 'http://sysmon.intra.douban.com:8000'
+graphite_url = 'http://graphitehost:port'
 listen_host = '0.0.0.0'
 listen_port = 8801
 ```
