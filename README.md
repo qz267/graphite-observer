@@ -51,5 +51,6 @@ targets = [
 ]
 ```
 
-Browser will use this conf to determine a metric is in good state or bad.
-if `metric_value` of `targets['path']` is greater than `targets['max']` or less than `targets['min']`, it is in bad state
+Browser will infinitely use this conf to determine a metric is in good state or bad.
+
+If `metric_value` of `targets['path']` is greater than `targets['max']` or less than `targets['min']`, it is in bad state
