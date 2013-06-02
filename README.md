@@ -12,5 +12,7 @@ whose element is:
 * max: max value of this metric
 * min: min value of this metric
 
+# Screenshot
+
 ![Screenshot](https://raw.github.com/huoxy/graphite-observer/master/Screenshot.png)
 
