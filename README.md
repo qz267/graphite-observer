@@ -18,7 +18,7 @@ whose element is:
 
 # Configuration
 
-* config.py
+edit config.py
 
 ```
 graphite_url = 'http://sysmon.intra.douban.com:8000'
