@@ -3,7 +3,7 @@
 import os, importlib, logging, json, urllib2
 import plugins
 import config
-from bottle import route, run, template, static_file
+from bottle import route, run, template, static_file, default_app
 
 logging.basicConfig(format = '%(asctime)-15s %(message)s', level = logging.DEBUG)
 targets_all = {}
@@ -64,7 +64,5 @@ def debug():
 @route('<path:re:/static/js/.*js>')
 def static(path, method = 'GET'):
     return static_file(path, root = '.')
-
-run(host = config.listen_host, port = config.listen_port, debug = True)
 
 
