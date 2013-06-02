@@ -1,0 +1,52 @@
+.alpha5 {
+    filter:alpha(opacity=50);
+    opacity: 0.5;
+}
+
+span.desc {
+    width: 80px;
+    text-align: center;
+    color: white;
+}
+
+#statusbar {
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    left: 0px;
+    bottom: 0px;
+    border-top: 3px solid #aaaa33;
+}
+
+#messages {
+    float: left;
+    width: 60%;
+    height: 100%;
+    border-right: 1px solid #aaaa33;
+}
+
+#targetinfo {
+    float: left;
+    width: 30%;
+    height: 100%;
+    padding: 20px;
+    color: white;
+}
+
+#targetinfo_table th {
+    width: 50px;
+    text-align: right;
+    color: #aaccaa;
+}
+
+#targetinfo_table td {
+    padding-left: 20px;
+}
+
+#targetinfo_max, #targetinfo_min {
+    color: #77aa77;
+}
+
+#targetinfo_curr {
+    color: yellow;
+}
