@@ -27,8 +27,7 @@ listen_port = 8801
 
 # Plugin
 
-Plugin is supported, a plugin is a python file in which defines a list
-whose element is:
+A plugin is a python file in which defines a list whose element is:
 * desc: description of this target
 * path: metric name
 * max: max value of this metric
@@ -51,3 +50,6 @@ targets = [
     },
 ]
 ```
+
+Browser will use this conf to determine a metric is in good state or bad.
+if `metric_value` of `targets['path']` is greater than `targets['max']` or less than `targets['min']`, it is in bad state
