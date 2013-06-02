@@ -29,12 +29,12 @@ listen_port = 8801
 
 Plugin is supported, a plugin is a python file in which defines a list
 whose element is:
-* path: metric name
 * desc: description of this target
+* path: metric name
 * max: max value of this metric
 * min: min value of this metric
 
-Example:
+For example:
 ```python
 targets = [
     {  
