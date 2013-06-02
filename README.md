@@ -55,4 +55,4 @@ Browser will infinitely use this conf to determine a metric is in good state or 
 
 If `metric_value` of `target['path']` is greater than `target['max']` or less than `target['min']`, it is in bad state.
 
-If in bad state, the corresponding `Circle` drew in previous Screenshot will keep expanding and then reducing.
+If in bad state, the corresponding `Circle` drew in previous Screenshot will keep expanding and then reducing. well... , it is diffcult to describe.
