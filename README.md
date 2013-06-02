@@ -13,7 +13,7 @@ The code is simple and hackable, no more than 500 lines (include html)
 
 in config.py
 
-```
+```python
 graphite_url = 'http://sysmon.intra.douban.com:8000'
 listen_host = '0.0.0.0'
 listen_port = 8801
@@ -53,4 +53,6 @@ targets = [
 
 Browser will infinitely use this conf to determine a metric is in good state or bad.
 
-If `metric_value` of `targets['path']` is greater than `targets['max']` or less than `targets['min']`, it is in bad state
+If `metric_value` of `target['path']` is greater than `target['max']` or less than `target['min']`, it is in bad state.
+
+If in bad state, the corresponding `Circle` drew in previous Screenshot will keep expanding and then reducing.
