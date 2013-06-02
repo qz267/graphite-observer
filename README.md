@@ -16,3 +16,15 @@ whose element is:
 
 ![Screenshot](https://raw.github.com/huoxy/graphite-observer/master/Screenshot.png)
 
+# Configuration
+
+* config.py
+
+```
+graphite_url = 'http://sysmon.intra.douban.com:8000'
+listen_host = '0.0.0.0'
+listen_port = 8801
+```
+
+`graphite_url` should be your graphite web host:port
+
