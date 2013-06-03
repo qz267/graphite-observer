@@ -37,7 +37,7 @@ A plugin is a python file in which defines a list whose element is:
 * max: max value of this metric
 * min: min value of this metric
 
-For example, `cpu.py` has content:
+For example, `plugins/cpu.py` has content:
 ```python
 targets = [
     {  
