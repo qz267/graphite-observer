@@ -11,7 +11,7 @@ The code is simple and hackable, no more than 500 lines (include html)
 
 # Requirement
 
-2.7 <= python version < 3
+* 2.7 <= python version < 3
 
 # Configuration
 
