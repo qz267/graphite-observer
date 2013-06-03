@@ -9,6 +9,10 @@ The code is simple and hackable, no more than 500 lines (include html)
 
 ![Screenshot](https://raw.github.com/huoxy/graphite-observer/master/Screenshot.png)
 
+# Requirement
+
+2.7 <= python version < 3
+
 # Configuration
 
 in config.py
