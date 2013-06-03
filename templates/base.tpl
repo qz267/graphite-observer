@@ -1,4 +1,5 @@
 % setdefault('page', 'index')
+% setdefault('plugin', None)
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,7 +39,7 @@
           <a class="brand" href="/index">Graphite observer</a>
           <div class="nav-collapse">
             <ul class="nav">
-	% for (key, title) in [('index', 'Home'), ('debug', 'Debug')]:
+	% for (key, title) in [('index', 'Home'), ('debug', 'Debug'), ('dashboard', 'Dashboard' + (plugin and ' / '+plugin or ''))]:
 		% if page == key:
               <li class="active"><a href="/{{key}}">{{title}}</a></li>
 		% else:

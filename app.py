@@ -24,12 +24,13 @@ def load_plugins():
 load_plugins()
 
 
-def render_page(body, page='index'):
-    return str(template('templates/base', body = body, page = page))
+def render_page(body, page='index', **kwargs):
+    return str(template('templates/base', body = body, page = page, **kwargs))
 
 
 @route('/', method = 'GET')
 @route('/index', method = 'GET')
+@route('/dashboard', method = 'GET')
 def index():
     body = template('templates/body.index', targets_all = targets_all)
     return render_page(body)
@@ -38,7 +39,7 @@ def index():
 @route('/dashboard/:plugin', method = 'GET')
 def dashboard(plugin = ''):
     body = template('templates/body.dashboard', targets = targets_all[plugin])
-    return render_page(body)
+    return render_page(body, page = 'dashboard', plugin = plugin)
 
 
 @route('/metric_value/:metric_name', method = 'GET')
