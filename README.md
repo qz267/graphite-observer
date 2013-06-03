@@ -23,7 +23,7 @@ listen_host = '0.0.0.0'
 listen_port = 8801
 ```
 
-`graphite_url` should be your graphite web host:port
+the `graphite_url` should be your graphite web host:port
 
 # Running
 * default: `./graphite-observer.py` and your page is available at `<ip>:8801`
