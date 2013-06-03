@@ -13,6 +13,39 @@ body {
     opacity: 0.5;
 }
 
+#index_sidebar {
+    float: left;
+    width: 200px;
+    height: 100%;
+    padding: 10px;
+    border-left: 2px solid black;
+    border-top: 1px solid #555555;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+#index_sidebar h4 {
+    color: #aaaaaa;
+}
+
+#dashboard_container {
+    float: left;
+    margin-left: 20px;
+}
+
+.dashboard_a {
+    color: white;
+    text-decoration: underline;
+}
+
+.dashboard_a:hover {
+    text-decoration: none;
+}
+
+.dashboard_span {
+    margin: 5px;
+}
+
 span.desc {
     width: 80px;
     text-align: center;
