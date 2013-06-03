@@ -35,6 +35,18 @@ span.desc {
     border-right: 1px solid #aaaa33;
 }
 
+.message {
+    color: #227777;
+}
+
+.message_warning {
+    color: #aaaa33;
+}
+
+.message_critical {
+    color: #aa3333;
+}
+
 #targetinfo {
     float: left;
     width: 30%;

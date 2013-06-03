@@ -1,12 +1,18 @@
 <script src="/static/js/JSTweener.js"></script>
 <script>
 
-// generate by python template
+// generate by python template for ordered display
 var targets = [
 % for t in targets:
     {{!t}} ,
 % end
 ]
+
+// generate by js for quick search
+var targets_dict = {};
+for (var i = 0; i < targets.length; i++) {
+    targets_dict[targets[i].path] = targets[i];
+}
 
 const SVG = "http://www.w3.org/2000/svg";
 const XLINK = "http://www.w3.org/1999/xlink";
@@ -77,21 +83,13 @@ var randomColor = function() {
     return '#' + r + g + b;
 };
 
-function findtarget(path) {
-    for (var i = 0; i < targets.length; i++) {
-        if (targets[i].path == path) {
-            return targets[i];
-        }
-    }
-}
-
 function activateCircle(circle) {
-    var target = findtarget(circle.id);
+    var target = targets_dict[circle.id];
     setInterval(function() {
         var url = '/metric_value/' + circle.id;
         $.get(url, function(metric_value){
             target['curr'] = metric_value;
-            messages.push(circle.id + ' ' + String(metric_value));
+            messages.push({'name' : circle.id, 'value' : metric_value});
             if(focusedCircle) showTargetInfo();
             if ( metric_value < target.min || metric_value > target.max) {
                 bigBang(circle);
@@ -125,7 +123,7 @@ function bigBang(circle) {
 }
 
 function showTargetInfo() {
-    var target = findtarget(focusedCircle.id);
+    var target = targets_dict[focusedCircle.id];
     $('#targetinfo_desc').html(target.desc);
     $('#targetinfo_path').html(target.path);
     $('#targetinfo_max').html(target.max);
@@ -141,10 +139,27 @@ function clearTargetInfo() {
     $('#targetinfo_curr').html('');
 }
 
+function createMessage() {
+    var metric = messages.shift();
+    if (metric == undefined) return null;
+    var el = document.createElement('div');
+    var target = targets_dict[metric.name];
+    if(metric.value > target.min && metric.value < target.max) {
+        el.className = 'message';
+    } else if (metric.value == target.min || metric.value == target.max) {
+        el.className = 'message message_warning';
+    } else {
+        el.className = 'message message_critical';
+    }
+    el.innerHTML = metric.name + ' ' + metric.value;
+    el.style.fontFamily = 'times';
+    return el;
+}
+
 function pushMessage() {
-    var text = messages.shift();
-    if (text == undefined) return;
-    $('#messages').append('<div class = "message">' + text + '</div>');
+    var message = createMessage();
+    if(!message) return;
+    $('#messages')[0].appendChild(message);
     if($('.message').length > 7) {
         popMessage();
     }
