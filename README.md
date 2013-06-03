@@ -25,10 +25,6 @@ listen_port = 8801
 
 the `graphite_url` should be your graphite web host:port
 
-# Running
-* default: `./graphite-observer.py` and your page is available at `<ip>:8801`
-* alternatively, if you use gunicorn, you can run it with multi-workers like so: `gunicorn -w 4 app:'default_app()' -b 0.0.0.0:8801`
-
 # Plugin
 
 A plugin is a python file in which defines a list whose element is:
@@ -62,6 +58,10 @@ Browser will infinitely use this conf to determine a metric is in good state or 
 If `metric_value` of `target['path']` is greater than `target['max']` or less than `target['min']`, it is in bad state.
 
 If in bad state, the corresponding `Circle` drew in previous Screenshot will keep expanding and then reducing. well... , it is diffcult to describe.
+
+# Running
+* default: `./graphite-observer.py` and your page is available at `<ip>:8801`
+* alternatively, if you use gunicorn, you can run it with multi-workers like so: `gunicorn -w 4 app:'default_app()' -b 0.0.0.0:8801`
 
 # Logging
 
