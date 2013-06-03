@@ -37,7 +37,7 @@ A plugin is a python file in which defines a list whose element is:
 * max: max value of this metric
 * min: min value of this metric
 
-For example:
+For example, `cpu.py` has content:
 ```python
 targets = [
     {  
@@ -54,6 +54,8 @@ targets = [
     },
 ]
 ```
+
+then you can view states of these metrics via `http://<ip>:<port>/dashboard/cpu`
 
 Browser will infinitely use this conf to determine a metric is in good state or bad.
 
