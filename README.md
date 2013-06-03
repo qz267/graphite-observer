@@ -9,10 +9,6 @@ The code is simple and hackable, no more than 500 lines (include html)
 
 ![Screenshot](https://raw.github.com/huoxy/graphite-observer/master/Screenshot.png)
 
-# Requirement
-
-* 2.7 <= python version < 3
-
 # Configuration
 
 in config.py
@@ -58,6 +54,9 @@ Browser will infinitely use this conf to determine a metric is in good state or 
 If `metric_value` of `target['path']` is greater than `target['max']` or less than `target['min']`, it is in bad state.
 
 If in bad state, the corresponding `Circle` drew in previous Screenshot will keep expanding and then reducing. well... , it is diffcult to describe.
+
+# Requirement
+* 2.7 <= python version < 3
 
 # Running
 * default: `./graphite-observer.py` and your page is available at `<ip>:8801`
