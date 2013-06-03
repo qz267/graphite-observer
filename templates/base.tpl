@@ -13,16 +13,6 @@
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <link href="/static/css/graphite-observer.css" rel="stylesheet">
     <script src="/static/js/jquery.min.js"></script>
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 0px;
-        overflow:hidden;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
 
   </head>
 

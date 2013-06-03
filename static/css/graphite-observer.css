@@ -1,3 +1,13 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 0px;
+    overflow:hidden;
+}
+
+.sidebar-nav {
+    padding: 9px 0; 
+}
+
 .alpha5 {
     filter:alpha(opacity=50);
     opacity: 0.5;
