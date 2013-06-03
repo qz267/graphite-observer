@@ -59,4 +59,4 @@ If in bad state, the corresponding `Circle` drew in previous Screenshot will kee
 
 # Logging
 
-In the left-bottom of dashboard page, there is real time log which will be automatically refreshed.
+On the left-bottom of dashboard page, there is real time log which will be automatically refreshed.
