@@ -112,7 +112,7 @@ function createSpan(text, left, top) {
 function bigBang(circle) {
     JSTweener.addTween(circle, {
         time: 0.2,
-        r: radius * 2,
+        r: radius * 1.5,
         onComplete: function() {
             JSTweener.addTween(circle, {
                 time:2,
