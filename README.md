@@ -27,7 +27,7 @@ listen_port = 8801
 
 # Running
 * default: `./graphite-observer.py` and your page is available at `<ip>:8801`
-* alternatively, if you use gunicorn, you can run it with multi-workers like so: `gunicorn -w 4 app:'default_app()' -b <ip>:8801`
+* alternatively, if you use gunicorn, you can run it with multi-workers like so: `gunicorn -w 4 app:'default_app()' -b 0.0.0.0:8801`
 
 # Plugin
 
