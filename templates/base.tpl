@@ -54,6 +54,7 @@
                     'press a circle may bind it to right-bottom',
                     'hover a circle may monitor in realtime',
                     'only 40 circles at most can displayed in a single page',
+                    'there are many TODOs, waiting for your pr',
         ];
         setInterval(function(){
             var tip = tips[parseInt(Math.random() * tips.length)];
