@@ -64,7 +64,7 @@ For example, in plugin `example.py`, a variable named `category` defined as:
 category = 'sysadmin'
 ```
 
-then `example.py` will in `category` group, and plugins will be listed group by category
+then `example.py` will in `sysadmin` group, and plugins will be listed group by category
 
 # Requirement
 * python2: either 2.6 or higher.
