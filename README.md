@@ -74,7 +74,7 @@ then `example.py` will in `sysadmin` group, and plugins will be listed group by 
 * python2: either 2.6 or higher.
 
 # Running
-* default: `./graphite-observer.py` and your page is available at `<ip>:8801`
+* default: `./graphite-observer.py` and your page is available at `http://<ip>:8801`
 * alternatively, if you use gunicorn, you can run it with multi-workers like so: `gunicorn -w 4 app:'default_app()' -b 0.0.0.0:8801`
 
 # Logging
