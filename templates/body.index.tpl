@@ -7,7 +7,7 @@ want a custom page? write a new plugin refer to <a href = 'https://github.com/hu
 if your a plugin 'example.py', then '/dashboard/example' will be your page.
 </p>
 <p>
-<a href = '/debug'>debug</a> page will show all plugins.
+<a href = '/debug'>debug</a> page will show config of all plugins.
 </p>
 </div>
 <div id = 'dashboard_container'>
