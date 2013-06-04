@@ -9,7 +9,7 @@ Thanks to : [graph-explorer](https://github.com/vimeo/graph-explorer), [maptail]
 
 # Screenshot
 
-![Screenshot](https://raw.github.com/huoxy/graphite-observer/master/static/dashboardScreenshot.png)
+![Screenshot](https://raw.github.com/huoxy/graphite-observer/master/static/image/dashboardScreenshot.png)
 
 # Configuration
 
@@ -66,7 +66,7 @@ category = 'sysadmin'
 
 then `example.py` will in `sysadmin` group, and plugins will be listed group by category
 
-![Screenshot](https://raw.github.com/huoxy/graphite-observer/master/static/indexScreenshot.png)
+![Screenshot](https://raw.github.com/huoxy/graphite-observer/master/static/image/indexScreenshot.png)
 
 # Requirement
 * python2: either 2.6 or higher.
