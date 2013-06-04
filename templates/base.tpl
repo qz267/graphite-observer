@@ -53,7 +53,7 @@
         var tips = ['you need to drink water',
                     'press a circle may bind it to right-bottom',
                     'hover a circle may monitor in realtime',
-                    'only 40 at most circles can displayed in a single page',
+                    'only 40 circles at most can displayed in a single page',
         ];
         setInterval(function(){
             var tip = tips[parseInt(Math.random() * tips.length)];
