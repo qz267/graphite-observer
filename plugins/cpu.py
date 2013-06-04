@@ -1,6 +1,16 @@
 targets = [
-    dict(desc = 'dis%s cpu' % i, \
-            path = 'servers.dis%s.cpu.total.user' % i, \
-            max = '300', min = '0') \
-                  for i in range(1, 21)
+    {
+        'desc' : 'hostA cpu',
+        'path' : 'servers.hostA.cpu.total.user',
+        'max' : 400,
+        'min' : 0,
+    },
+    {
+        'desc' : 'hostB cpu',
+        'path' : 'servers.hostB.cpu.total.user',
+        'max' : 500,
+        'min' : 0,
+    },
 ]
+
+category = 'sysadmin'
