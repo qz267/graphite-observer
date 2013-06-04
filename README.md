@@ -1,11 +1,11 @@
 # Graphite observer
 
 A realtime monitor dashboard for
-[Graphite](https://github.com/graphite-project/graphite-web)
+[Graphite](https://github.com/graphite-project/graphite-web).
 
-The code is simple and hackable, no more than 1000 lines
+The code is simple and hackable, no more than 1000 lines.
 
-Thanks to : [graph-explorer](https://github.com/vimeo/graph-explorer), [maptail](https://github.com/stagas/maptail), [JSTweener](http://coderepos.org/share/wiki/JSTweener), I have merged styles of these three into graphite-observer
+Thanks to : [graph-explorer](https://github.com/vimeo/graph-explorer), [maptail](https://github.com/stagas/maptail), [JSTweener](http://coderepos.org/share/wiki/JSTweener), I have merged styles of these three into graphite-observer.
 
 # Screenshot
 
@@ -13,7 +13,7 @@ Thanks to : [graph-explorer](https://github.com/vimeo/graph-explorer), [maptail]
 
 # Configuration
 
-in config.py
+in config.py:
 
 ```python
 graphite_url = 'http://graphitehost:port'
@@ -21,7 +21,7 @@ listen_host = '0.0.0.0'
 listen_port = 8801
 ```
 
-the `graphite_url` should be your graphite web host:port
+the `graphite_url` should be your graphite web location.
 
 # Plugin
 
@@ -51,13 +51,13 @@ targets = [
 category = 'sysadmin'
 ```
 
-then you can view states of these metrics via `http://<ip>:<port>/dashboard/cpu`
+then you can view states of these metrics via `http://<ip>:<port>/dashboard/cpu`.
 
 Browser will infinitely use this conf to determine a metric is in good state or bad.
 
 If `metric_value` of `target['path']` is greater than `target['max']` or less than `target['min']`, it is in bad state.
 
-If in bad state, the corresponding `Circle` drew in previous Screenshot will keep expanding and then reducing. well... , it is diffcult to describe.
+If in bad state, the corresponding `Circle` drew in previous Screenshot will keep zooming in/out.
 
 # Category
 A plugin belongs to a `category`, this is defined in plugin files.
