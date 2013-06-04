@@ -56,7 +56,7 @@ If `metric_value` of `target['path']` is greater than `target['max']` or less th
 If in bad state, the corresponding `Circle` drew in previous Screenshot will keep expanding and then reducing. well... , it is diffcult to describe.
 
 # Requirement
-* 2.7 <= python version < 3
+* python2: either 2.6 or higher.
 
 # Running
 * default: `./graphite-observer.py` and your page is available at `<ip>:8801`

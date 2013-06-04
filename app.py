@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, importlib, logging, json, urllib2
+import os, logging, json, urllib2
 import plugins
 import config
 from bottle import route, run, template, static_file, default_app
@@ -16,7 +16,7 @@ def load_plugins():
             continue
         module = f[:-3]
         try:
-            plugin = importlib.import_module('plugins.' + module)
+            plugin = imp = __import__('plugins.' + module, globals(), locals(), ['*'])
             targets_all[module] = plugin.targets
             logging.info('Loading plugin - %s', module)
         except:
