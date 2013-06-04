@@ -66,12 +66,7 @@ div.category li a:hover {
     text-decoration: none;
 }
 
-/*
-.dashboard_span {
-    margin: 5px;
-}
-*/
-
+/* body.dashboard.tpl */
 span.desc {
     width: 80px;
     text-align: center;
@@ -94,15 +89,15 @@ span.desc {
     border-right: 1px solid #aaaa33;
 }
 
-.message {
+div.message {
     color: #227777;
 }
 
-.message_warning {
+div.warning {
     color: #aaaa33;
 }
 
-.message_critical {
+div.critical {
     color: #aa3333;
 }
 
@@ -130,4 +125,13 @@ span.desc {
 
 #targetinfo_curr {
     color: yellow;
+}
+
+/* body.debug.tpl */
+div.debug {
+    padding-bottom: 20px;
+}
+
+table.debug {
+    border-bottom: 1px solid #777777;
 }

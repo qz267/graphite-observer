@@ -147,9 +147,9 @@ function createMessage() {
     if(metric.value > target.min && metric.value < target.max) {
         el.className = 'message';
     } else if (metric.value == target.min || metric.value == target.max) {
-        el.className = 'message message_warning';
+        el.className = 'message warning';
     } else {
-        el.className = 'message message_critical';
+        el.className = 'message critical';
     }
     el.innerHTML = metric.name + ' ' + metric.value;
     el.style.fontFamily = 'times';

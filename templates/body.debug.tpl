@@ -1,9 +1,10 @@
+<div class = 'debug'>
 <table>
 % for module, targets in targets_all.items():
     <tr>
-        <th>{{module}}<th>
+        <th>{{module}} : <th>
         <td> 
-            <table>
+            <table class = 'debug'>
             % for t in targets:
                 <tr>
                     <th>path:</th><td>{{t['path']}}</th>
@@ -20,3 +21,4 @@
 <script>
 document.body.style.overflow = 'auto';
 </script>
+</div>
