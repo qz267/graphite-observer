@@ -31,22 +31,24 @@ A plugin is a python file in which defines a list whose element is:
 * max: max value of this metric
 * min: min value of this metric
 
-For example, `plugins/cpu.py` has content:
+For example, `plugins/example.py` has content:
 ```python
 targets = [
     {  
         'desc'  : 'hostA cpu',
         'path'  : 'servers.hostA.cpu.total.user',
-        'max'   : 200,
+        'max'   : 400,
         'min'   : 0
     }, 
     {
         'desc'  : ' hostB cpu',
         'path'  : 'servers.hostB.cpu.total.user',
-        'max'   : 200,
+        'max'   : 500,
         'min'   : 0
     },
 ]
+
+category = 'sysadmin'
 ```
 
 then you can view states of these metrics via `http://<ip>:<port>/dashboard/cpu`
