@@ -40,7 +40,7 @@
           </div><!--/.nav-collapse -->
             <ul class="nav pull-right">
             % import time
-            <li><a>{{time.asctime()}}</a> </li>
+            <li><a id = 'tip'>{{time.asctime()}}</a> </li>
             </ul>
         </div>
       </div>
@@ -48,6 +48,18 @@
     <div id = 'content' style = 'margin-left: 20px;'>
     {{!body}}
     </div>
+    <script>
+    $(document).ready(function(){
+        var tips = ['you need to drink water',
+                    'press a circle may bind it to right-bottom',
+                    'hover a circle may monitor in realtime',
+        ];
+        setInterval(function(){
+            var tip = tips[parseInt(Math.random() * tips.length)];
+            $('#tip').html(tip);
+        }, 1000 * 60);
+    });
+    </script>
 
   </body>
 </html>
