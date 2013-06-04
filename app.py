@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 
 import os, logging, json, urllib2
+from collections import defaultdict
 import plugins
 import config
 from bottle import route, run, template, static_file, default_app
 
 logging.basicConfig(format = '%(asctime)-15s %(message)s', level = logging.DEBUG)
 targets_all = {}
+categories = defaultdict(list)
 
 def load_plugins():
     global targets_all
@@ -18,6 +20,11 @@ def load_plugins():
         try:
             plugin = __import__('plugins.' + module, globals(), locals(), ['*'])
             targets_all[module] = plugin.targets
+            if hasattr(plugin, 'category') and not callable(getattr(plugin, 'category')):
+                category = plugin.category
+            else:
+                category = 'default'
+            categories[category].append(module)
             logging.info('Loading plugin - %s', module)
         except:
             logging.info('Error when loading plugin - %s', module)
@@ -32,7 +39,7 @@ def render_page(body, page='index', **kwargs):
 @route('/index', method = 'GET')
 @route('/dashboard', method = 'GET')
 def index():
-    body = template('templates/body.index', targets_all = targets_all)
+    body = template('templates/body.index', targets_all = targets_all, categories = categories)
     return render_page(body)
 
 

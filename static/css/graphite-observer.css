@@ -1,7 +1,6 @@
 body {
     padding-top: 60px;
     padding-bottom: 0px;
-    overflow:hidden;
 }
 
 .sidebar-nav {
@@ -13,6 +12,9 @@ body {
     opacity: 0.5;
 }
 
+/* common */
+
+/* body.index.tpl */
 #index_sidebar {
     float: left;
     width: 200px;
@@ -31,20 +33,43 @@ body {
 #dashboard_container {
     float: left;
     margin-left: 20px;
+    width: 900px;
 }
 
-.dashboard_a {
-    color: white;
+div.category {
+    float: none;
+    min-width: 1000px;
+}
+
+div.category h3 {
+    width: 100%;
+    color: #777777;
+}
+
+div.category ul {
+    float: left;
+    width: 100%;
+}
+
+div.category li {
+    float: left;
+    margin-right: 30px;
+}
+
+div.category li a {
+    color: #bbbbbb;
     text-decoration: underline;
 }
 
-.dashboard_a:hover {
+div.category li a:hover {
     text-decoration: none;
 }
 
+/*
 .dashboard_span {
     margin: 5px;
 }
+*/
 
 span.desc {
     width: 80px;
