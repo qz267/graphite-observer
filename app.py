@@ -19,7 +19,7 @@ def load_plugins():
         module = f[:-3]
         try:
             plugin = __import__('plugins.' + module, globals(), locals(), ['*'])
-            targets_all[module] = plugin.targets
+            targets_all[module] = plugin.targets[:40]
             if hasattr(plugin, 'category') and not callable(getattr(plugin, 'category')):
                 category = plugin.category
             else:
