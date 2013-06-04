@@ -3,7 +3,7 @@
 A realtime monitor dashboard for
 [Graphite](https://github.com/graphite-project/graphite-web)
 
-The code is simple and hackable, no more than 500 lines (include html)
+The code is simple and hackable
 
 Thanks to : [graph-explorer](https://github.com/vimeo/graph-explorer), [maptail](https://github.com/stagas/maptail), [JSTweener](http://coderepos.org/share/wiki/JSTweener), I have merged styles of these three into graphite-observer
 
