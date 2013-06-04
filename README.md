@@ -3,7 +3,7 @@
 A realtime monitor dashboard for
 [Graphite](https://github.com/graphite-project/graphite-web)
 
-The code is simple and hackable
+The code is simple and hackable, no more than 1000 lines
 
 Thanks to : [graph-explorer](https://github.com/vimeo/graph-explorer), [maptail](https://github.com/stagas/maptail), [JSTweener](http://coderepos.org/share/wiki/JSTweener), I have merged styles of these three into graphite-observer
 
@@ -56,6 +56,15 @@ Browser will infinitely use this conf to determine a metric is in good state or 
 If `metric_value` of `target['path']` is greater than `target['max']` or less than `target['min']`, it is in bad state.
 
 If in bad state, the corresponding `Circle` drew in previous Screenshot will keep expanding and then reducing. well... , it is diffcult to describe.
+
+# Category
+A plugin belongs to a `category`, this is defined in plugin files.
+For example, in plugin `example.py`, a variable named `category` defined as:
+```
+category = 'sysadmin'
+```
+
+then `example.py` will in `category` group, and plugins will be listed group by category
 
 # Requirement
 * python2: either 2.6 or higher.
