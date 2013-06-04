@@ -16,7 +16,7 @@ def load_plugins():
             continue
         module = f[:-3]
         try:
-            plugin = imp = __import__('plugins.' + module, globals(), locals(), ['*'])
+            plugin = __import__('plugins.' + module, globals(), locals(), ['*'])
             targets_all[module] = plugin.targets
             logging.info('Loading plugin - %s', module)
         except:
