@@ -62,7 +62,7 @@ If in bad state, the corresponding `Circle` drew in previous Screenshot will kee
 # Category
 A plugin belongs to a `category`, this is defined in plugin files.
 For example, in plugin `example.py`, a variable named `category` defined as:
-```
+```python
 category = 'sysadmin'
 ```
 
