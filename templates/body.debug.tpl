@@ -17,3 +17,6 @@
     </tr>
 % end
 </table>
+<script>
+document.body.style.overflow = 'auto';
+</script>
