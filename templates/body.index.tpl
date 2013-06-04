@@ -13,7 +13,7 @@ if your plugin is 'example.py', then '/dashboard/example' will be your page.
 <div id = 'dashboard_container'>
 % for category, members in categories.items():
     <div class = 'category'>
-        <h3 class = 'category'><b>{{category}}</b></h3>
+        <h3 class = 'category'><b>{{category}}</b> &#187;</h3>
         <ul>
         % for plugin in members:
             <li><a href = '/dashboard/{{plugin}}'>{{plugin}}</a></li>
