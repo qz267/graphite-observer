@@ -17,9 +17,6 @@ for (var i = 0; i < targets.length; i++) {
 const SVG = "http://www.w3.org/2000/svg";
 const XLINK = "http://www.w3.org/1999/xlink";
 
-const normal_style = 'opacity:0.8; fill: skyblue'; // #990000
-const abnormal_style = 'opacity:0.8; fill: #990000';
-
 var bWidth = document.getElementsByTagName("body")[0].clientWidth;
 var bHeight = document.getElementsByTagName("body")[0].clientHeight;
 
@@ -213,7 +210,7 @@ function init() {
         circle.r = 0;
         circle.id = target.path;
         circles.push(circle);
-        circle.style = 'opacity:0.8; fill:' + randomColor();
+        circle.style = 'opacity:0.7; fill:' + randomColor();
         _('canvas').appendChild(circle);
         JSTweener.addTween(circle, {
             delay: count * delayNum,
