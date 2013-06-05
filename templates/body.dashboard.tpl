@@ -33,6 +33,8 @@ var bindedCircle;
 var messages = [];
 var messages_cnt = 0;
 
+var blank_reg = /^\s*$/;
+
 var _ = function(name) {
     return defAttr(document.getElementById(name));
 }
@@ -139,16 +141,20 @@ function clearTargetInfo() {
 function createMessage() {
     var metric = messages.shift();
     if (metric == undefined) return null;
+
     var el = document.createElement('div');
     var target = targets_dict[metric.name];
     if(metric.value > target.min && metric.value < target.max) {
         el.className = 'message';
+        level = "info";
     } else if (metric.value == target.min || metric.value == target.max) {
         el.className = 'message warning';
+        level = "warning";
     } else {
         el.className = 'message critical';
+        level = "critical";
     }
-    el.innerHTML = metric.name + ' ' + metric.value;
+    el.innerHTML = level + " : " + metric.name + ' ' + metric.value;
     el.style.fontFamily = 'times';
     return el;
 }
@@ -156,6 +162,14 @@ function createMessage() {
 function pushMessage() {
     var message = createMessage();
     if(!message) return;
+
+    var filter = $('#filter').val();
+    if (! blank_reg.test(filter)) {
+        var reg = RegExp(filter);
+        if (! reg.test(message.innerHTML))
+            return; // do not match
+    }
+
     $('#messages')[0].appendChild(message);
     if($('.message').length > 7) {
         popMessage();
@@ -235,6 +249,10 @@ function init() {
 <svg id = 'canvas' onload = "init()" >
 <div id = 'statusbar'>
     <div id = 'messages'></div>
+    <div id = 'settings'>
+        <input id = 'filter' type="text" class="input-xlarge">
+        <p class="help-block">Input some regular expression to filter logs.</p>
+    </div>
     <div id = 'targetinfo'>
         <table id = 'targetinfo_table'>
             <tr><th>Desc :</th><td id = 'targetinfo_desc'></td></tr>
