@@ -165,9 +165,13 @@ function pushMessage() {
 
     var filter = $('#filter').val();
     if (! blank_reg.test(filter)) {
-        var reg = RegExp(filter);
-        if (! reg.test(message.innerHTML))
-            return; // do not match
+        try {
+            var reg = RegExp(filter);
+            if (! reg.test(message.innerHTML))
+                return; // do not match
+        } catch (err) {
+            return;
+        }
     }
 
     $('#messages')[0].appendChild(message);
