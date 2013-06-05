@@ -54,6 +54,7 @@
                     'press a circle may bind it to right-bottom',
                     'hover a circle may monitor in realtime',
                     'only 40 at most circles can be displayed in a single page',
+                    'you can filter logs with regular expression',
         ];
         setInterval(function(){
             var tip = tips[parseInt(Math.random() * tips.length)];
