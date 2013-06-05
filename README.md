@@ -79,4 +79,5 @@ then `example.py` will belong to category `sysadmin`, and plugins will be listed
 
 # Logging
 
-On the left-bottom of dashboard page, there is real time log which will be automatically refreshed.
+* On left-bottom of dashboard page, there is real time log which will be automatically refreshed.
+* When you press a circle to "bind" it to right-bottom, it will refresh info only about this metric.
