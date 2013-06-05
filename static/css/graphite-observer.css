@@ -20,12 +20,11 @@ body {
 /* body.index.tpl */
 #index_sidebar {
     float: left;
-    width: 200px;
+    width: 250px;
     height: 100%;
-    padding: 10px;
 }
 
-#index_sidebar h4 {
+#gettingstarted h4 {
     color: #aaaaaa;
     text-align: center;
 }
