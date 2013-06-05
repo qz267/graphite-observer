@@ -255,7 +255,7 @@ function init() {
     <div id = 'messages'></div>
     <div id = 'settings'>
         <input id = 'filter' type="text" class="input-xlarge">
-        <p class="help-block">Input some regular expression to filter logs.</p>
+        <p class="help-block">input regular expression to filter logs</p>
     </div>
     <div id = 'targetinfo'>
         <table id = 'targetinfo_table'>
