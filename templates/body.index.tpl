@@ -11,7 +11,8 @@ if your plugin is 'example.py', then '/dashboard/example' will be your page.
 </p>
 </div>
 <div id = 'dashboard_container'>
-% for category, members in categories.items():
+% for category in sorted(categories.keys()):
+    % members = categories[category]
     <div class = 'category'>
         <h3 class = 'category'><b>{{category}}</b> &#187;</h3>
         <ul>
