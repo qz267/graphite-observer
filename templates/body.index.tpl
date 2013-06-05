@@ -1,4 +1,4 @@
-<div id = 'index_sidebar'>
+<div class = 'well' id = 'index_sidebar'>
 <h4><b>GETTING STARTED</b></h4>
 <p>
 want a custom page? write a new plugin refer to <a href = 'https://github.com/huoxy/graphite-observer#plugin'>wiki</a> and send your pull request.
