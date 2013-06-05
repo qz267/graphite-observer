@@ -66,7 +66,7 @@ For example, in plugin `example.py`, a variable named `category` defined as:
 category = 'sysadmin'
 ```
 
-then `example.py` will in `sysadmin` group, and plugins will be listed group by category
+then `example.py` will belong to category `sysadmin`, and plugins will be listed group by category
 
 ![Screenshot](https://raw.github.com/huoxy/graphite-observer/master/static/image/indexScreenshot.png)
 
