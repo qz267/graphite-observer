@@ -1,7 +1,6 @@
 # Graphite observer
 
-A realtime monitor dashboard for
-[Graphite](https://github.com/graphite-project/graphite-web).
+A realtime monitor dashboard for [Graphite](https://github.com/graphite-project/graphite-web).
 
 The code is simple and hackable, no more than 1000 lines.
 
