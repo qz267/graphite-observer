@@ -227,7 +227,7 @@ function init() {
 
     setInterval(function() {
         pushMessage();
-    }, 50);
+    }, 10);
 }
 
 </script>
