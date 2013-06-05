@@ -51,7 +51,7 @@ targets = [
 category = 'sysadmin'
 ```
 
-then you can view states of these metrics via `http://<ip>:<port>/dashboard/cpu`.
+then you can view states of these metrics via `http://<ip>:<port>/dashboard/example`.
 
 Browser will infinitely use this conf to determine a metric is in good state or bad.
 
