@@ -8,10 +8,12 @@ body {
     padding: 9px 0; 
 }
 
+/*
 .alpha5 {
-    filter:alpha(opacity=50);
+    filter:alpha(opacity=100);
     opacity: 0.5;
 }
+*/
 
 /* common */
 
@@ -67,6 +69,7 @@ span.desc {
     width: 80px;
     text-align: center;
     color: white;
+    z-index: -2;
 }
 
 #statusbar {
