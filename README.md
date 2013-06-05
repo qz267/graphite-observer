@@ -31,6 +31,7 @@ A plugin is a python file in which defines a list whose element is:
 * min: min value of this metric
 
 For example, `plugins/example.py` has content:
+
 ```python
 targets = [
     {  
