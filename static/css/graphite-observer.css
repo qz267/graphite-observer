@@ -81,13 +81,25 @@ span.desc {
     border-top: 3px solid #aaaa33;
 }
 
-/* messages */
-#messages {
+/* logs */
+#logs {
     float: left;
-    width: 40%;
+    width: 60%;
     height: 100%;
+    border-right: 1px solid #aaaa33;
 }
 
+/* settings */
+
+/* filter */
+#filter {
+    position: absolute;
+    bottom: 160px;
+    left: 5px;
+    background-color: transparent;
+}
+
+/* messages */
 div.message {
     color: #227777;
 }
@@ -98,19 +110,6 @@ div.warning {
 
 div.critical {
     color: #aa3333;
-}
-
-/* settings */
-#settings {
-    float: left;
-    width: 20%;
-    height: 100%;
-    padding: 10px;
-    border-right: 1px solid #aaaa33;
-}
-
-#filter {
-    background-color: #364242;
 }
 
 /* target info */
