@@ -1,21 +1,22 @@
 <div class = 'debug'>
-<table>
-% for module, targets in targets_all.items():
+<table class = 'table table-bordered table-striped table-hover'>
     <tr>
-        <th>{{module}} : <th>
-        <td> 
-            <table class = 'debug'>
-            % for t in targets:
-                <tr>
-                    <th>path:</th><td>{{t['path']}}</th>
-                    <th>desc:</th><td>{{t['desc']}}</th>
-                    <th>max:</th><td>{{t['max']}}</th>
-                    <th>min:</th><td>{{t['min']}}</th>
-                </tr>
-            % end
-            </table>
-        </td> 
+        <th>Plugin Belongs To</th>
+        <th>Path ( Metric Name )</th>
+        <th>Description</th>
+        <th>Max Value</th>
+        <th>Min Value</th>
     </tr>
+% for module, targets in targets_all.items():
+    % for t in targets:
+    <tr>
+        <th>{{module}}</th>
+        <td>{{t['path']}}</td>
+        <td>{{t['desc']}}</td>
+        <td>{{t['max']}}</td>
+        <td>{{t['min']}}</td>
+    </tr>
+    % end
 % end
 </table>
 <script>
