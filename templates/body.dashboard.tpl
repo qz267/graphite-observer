@@ -139,9 +139,9 @@ function clearTargetInfo() {
 }
 
 function createMessage() {
-    var metric = messages.shift();
-    if (metric == undefined) return null;
+    if (messages.length == 0) return null;
 
+    var metric = messages.shift();
     var el = document.createElement('div');
     var target = targets_dict[metric.name];
     if(metric.value > target.min && metric.value < target.max) {
