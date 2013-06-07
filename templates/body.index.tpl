@@ -12,7 +12,9 @@
         </p>
     </div>
     <div id = 'ineedhelp' class = 'alert alert-info'>
-    There are TODOs waiting for pull request !
+    <strong>This project needs your help!</strong>
+    <br />
+    Luckily for you, the code is easy to grasp and hack.
     </div>
 </div>
 <div id = 'dashboard_container'>
