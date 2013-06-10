@@ -253,7 +253,7 @@ function init() {
 <svg id = 'canvas' onload = "init()" >
 <div id = 'statusbar'>
     <div id = 'logs'>
-        <input id = 'filter' type="text" class="input-medium search-query" placeholder="Filter RegExp">
+        <input id = 'filter' type="text" class="input-medium search-query" placeholder="Filter: RegExp">
         <div id = 'messages'></div>
     </div>
     <div id = 'targetinfo'>
