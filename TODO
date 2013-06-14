@@ -3,3 +3,5 @@
 * dynamic load plugin when add a new plugin
 
 * need a dynamic trending graph in center of bottom
+
+* may support regex in plugins/*.py
