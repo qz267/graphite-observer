@@ -72,6 +72,7 @@ then `example.py` will belong to category `sysadmin`, and plugins will be listed
 
 # Requirement
 * python2: either 2.6 or higher.
+* browser: chrome
 
 # Running
 * default: `./graphite-observer.py` and your page is available at `http://<ip>:8801`
