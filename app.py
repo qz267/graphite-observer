@@ -52,7 +52,7 @@ def dashboard(plugin = ''):
 @route('/metric_value/:metric_name', method = 'GET')
 def metric_value(metric_name = ''):
     try:
-        url = config.graphite_url + '/render/?from=-1min&format=json&target='
+        url = config.graphite_url.rstrip('/') + '/render/?from=-1min&format=json&target='
         datapoints = json.loads(urllib2.urlopen(url + metric_name).read())[0]['datapoints']
         # average value in last 1 min
         value = float(sum([p[0] for p in datapoints if p[0] is not None])) / len(datapoints)
