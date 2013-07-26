@@ -55,7 +55,7 @@ def metric_value(metric_name = ''):
         url = config.graphite_url.rstrip('/') + '/render/?from=-1min&format=json&target='
         datapoints = json.loads(urllib2.urlopen(url + metric_name).read())[0]['datapoints']
         # average value in last 1 min
-        value = float(sum([p[0] for p in datapoints if p[0] is not None])) / len(datapoints)
+        value = [p[0] for p in datapoints if p[0] is not None][-1]
         value = float('%.2f' % value)
     except:
         value = None
