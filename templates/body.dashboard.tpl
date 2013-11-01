@@ -24,7 +24,7 @@ var rootHeight = document.defaultView.innerHeight;
 var rootWidth = document.defaultView.innerWidth;
 
 var margin = 120;
-var radius = 40;
+var radius = 20;
 var circles = [];
 
 var focusedCircle;

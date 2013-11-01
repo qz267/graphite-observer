@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, logging, json, urllib2
+import os, logging, json, urllib2, re, sys
 from collections import defaultdict
 import plugins
 import config
@@ -10,23 +10,48 @@ logging.basicConfig(format = '%(asctime)-15s %(message)s', level = logging.DEBUG
 targets_all = {}
 categories = defaultdict(list)
 
+def load_metrics():
+    url = config.graphite_url + '/metrics/index_all.json'
+    try:
+        if os.path.exists(config.metrics_file) and config.debug:
+            data = open(config.metrics_file).read()
+        else:
+            data = urllib2.urlopen(url).read()
+        metrics = json.loads(data)
+        if config.debug:
+            open(config.metrics_file, 'w').write(json.dumps(metrics))
+    except Exception, e:
+        logging.warning(str(e))
+        sys.exit(1)
+    return metrics
+
 def load_plugins():
     global targets_all
     plugins_dir = os.path.dirname(plugins.__file__)
+    metrics = load_metrics()
     for f in os.listdir(plugins_dir):
         if f == '__init__.py' or not f.endswith('.py'):
             continue
         module = f[:-3]
+        matched_dict = {}
+        matched = []
         try:
             plugin = __import__('plugins.' + module, globals(), locals(), ['*'])
-            targets_all[module] = plugin.targets[:40]
+            for t in plugin.targets:
+                for m in metrics:
+                    if matched_dict.has_key(m): continue
+                    if re.search(t.get('reg'), m):
+                        matched_dict[m] = True
+                        matched.insert(0, {'desc':str(m),'path':str(m),'max':t['max'],'min':t['min']})
+            targets_all[module] = matched
             if hasattr(plugin, 'category') and not callable(getattr(plugin, 'category')):
                 category = plugin.category.lower()
             else:
                 category = 'default'
             categories[category].append(module)
             logging.info('Loading plugin - %s', module)
-        except:
+        except Exception, e:
+            print e
             logging.info('Error when loading plugin - %s', module)
 load_plugins()
 
