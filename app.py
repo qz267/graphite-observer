@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, logging, json, urllib2, re, sys
+import os, logging, json, urllib2, re, sys, random
 from collections import defaultdict
 import plugins
 import config
@@ -9,6 +9,12 @@ from bottle import route, run, template, static_file, default_app
 logging.basicConfig(format = '%(asctime)-15s %(message)s', level = logging.DEBUG)
 targets_all = {}
 categories = defaultdict(list)
+
+def randomcolor():
+    r = hex(int(random.random() * 64 + 127))[2:];
+    g = hex(int(random.random() * 64 + 127))[2:];
+    b = hex(int(random.random() * 64 + 127))[2:];
+    return '#' + r + g + b;
 
 def load_metrics():
     url = config.graphite_url + '/metrics/index_all.json'
@@ -38,11 +44,12 @@ def load_plugins():
         try:
             plugin = __import__('plugins.' + module, globals(), locals(), ['*'])
             for t in plugin.targets:
+                color = randomcolor()
                 for m in metrics:
                     if matched_dict.has_key(m): continue
                     if re.search(t.get('reg'), m):
                         matched_dict[m] = True
-                        matched.insert(0, {'desc':str(m),'path':str(m),'max':t['max'],'min':t['min']})
+                        matched.insert(0, {'desc':str(m),'path':str(m),'max':t['max'],'min':t['min'], 'color':color})
             targets_all[module] = matched
             if hasattr(plugin, 'category') and not callable(getattr(plugin, 'category')):
                 category = plugin.category.lower()
@@ -82,8 +89,9 @@ def metric_value(metric_name = ''):
         # average value in last 1 min
         value = [p[0] for p in datapoints if p[0] is not None][-1]
         value = float('%.2f' % value)
-    except:
-        value = None
+    except Exception, e:
+        print e
+        value = -9999
     return json.dumps(value)
 
 

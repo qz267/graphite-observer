@@ -23,7 +23,7 @@ var bHeight = document.getElementsByTagName("body")[0].clientHeight;
 var rootHeight = document.defaultView.innerHeight;
 var rootWidth = document.defaultView.innerWidth;
 
-var margin = 120;
+var margin = 50;
 var radius = 20;
 var circles = [];
 
@@ -228,7 +228,8 @@ function init() {
         circle.r = 0;
         circle.id = target.path;
         circles.push(circle);
-        circle.style = 'opacity:0.7; fill:' + randomColor();
+        //circle.style = 'opacity:0.7; fill:' + randomColor();
+        circle.style = 'opacity:0.7; fill:' + target.color;
         _('canvas').appendChild(circle);
         JSTweener.addTween(circle, {
             delay: count * delayNum,
@@ -238,7 +239,7 @@ function init() {
         circle.addEventListener('mouseover', mouseOverHandler, false);
         circle.addEventListener('mouseout', mouseOutHandler, false);
         circle.addEventListener('mousedown', mouseDownHandler, false);
-        createSpan(target.desc, String(x - radius / 2) + 'px', String(y + radius) + 'px');
+        //createSpan(target.desc, String(x - radius / 2) + 'px', String(y + radius) + 'px');
         activateCircle(circle);
         x += margin;
     }
