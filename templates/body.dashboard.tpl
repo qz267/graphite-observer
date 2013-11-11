@@ -3,8 +3,6 @@
 
 var targets_all = {{!targets_all}};
 
-var plugins_status = {};
-
 const SVG = "http://www.w3.org/2000/svg";
 const XLINK = "http://www.w3.org/1999/xlink";
 
@@ -76,22 +74,20 @@ function activateCircle(circle) {
     setInterval(function() {
         var plugin = circle.id;
         var targets = targets_all[plugin];
-        plugins_status[plugin] = true;
         for(var count = 0; count < targets.length; count++) {
             var target = targets[count];
             var url = '/metric_value/' + target['path'];
             $.get(url, function(metric_value){
-                target['curr'] = metric_value;
+                var ok = true;
+                //target['curr'] = metric_value;
                 if ( metric_value < target.min || metric_value > target.max) {
-                    plugins_status[plugin] = false;
+                    ok = false;
+                    bigBang(circle);
                 }
-                //console.log(plugins_status[plugin]);
-                messages.push({'plugin' : plugin, 'path' : target['path'], 'max' : target['max'], 'min' : target['min'], 'curr' : metric_value, 'status' : plugins_status[plugin]});
+                info = {'plugin' : plugin, 'path' : target.path, 'max' : target.max, 'min' : target.min, 'curr' : metric_value, 'status' : ok};
+                console.log(info);
+                messages.push(info);
             }, 'json');
-        }
-                console.log(plugins_status[plugin]);
-        if(!plugins_status[plugin]) {
-            bigBang(circle);
         }
     }, parseInt(Math.random() * 1000) + 2000);
 }
