@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, logging, json, urllib2, re, sys, random
+import os, logging, json, urllib2, re, sys
 from collections import defaultdict
 import plugins
 import config
@@ -8,13 +8,6 @@ from bottle import route, run, template, static_file, default_app
 
 logging.basicConfig(format = '%(asctime)-15s %(message)s', level = logging.DEBUG)
 targets_all = {}
-categories = defaultdict(list)
-
-def randomcolor():
-    r = hex(int(random.random() * 64 + 127))[2:];
-    g = hex(int(random.random() * 64 + 127))[2:];
-    b = hex(int(random.random() * 64 + 127))[2:];
-    return '#' + r + g + b;
 
 def load_metrics():
     url = config.graphite_url + '/metrics/index_all.json'
@@ -44,18 +37,12 @@ def load_plugins():
         try:
             plugin = __import__('plugins.' + module, globals(), locals(), ['*'])
             for t in plugin.targets:
-                color = randomcolor()
                 for m in metrics:
                     if matched_dict.has_key(m): continue
                     if re.search(t.get('reg'), m):
                         matched_dict[m] = True
-                        matched.insert(0, {'desc':str(m),'path':str(m),'max':t['max'],'min':t['min'], 'color':color})
+                        matched.insert(0, {'desc':str(m),'path':str(m),'max':t['max'],'min':t['min']})
             targets_all[module] = matched
-            if hasattr(plugin, 'category') and not callable(getattr(plugin, 'category')):
-                category = plugin.category.lower()
-            else:
-                category = 'default'
-            categories[category].append(module)
             logging.info('Loading plugin - %s', module)
         except Exception, e:
             print e
@@ -71,7 +58,8 @@ def render_page(body, page='index', **kwargs):
 @route('/index', method = 'GET')
 @route('/dashboard', method = 'GET')
 def index():
-    body = template('templates/body.index', targets_all = targets_all, categories = categories)
+    #body = template('templates/body.index', targets_all = targets_all)
+    body = template('templates/body.dashboard', targets_all = targets_all)
     return render_page(body)
 
 
@@ -86,9 +74,8 @@ def metric_value(metric_name = ''):
     try:
         url = config.graphite_url.rstrip('/') + '/render/?from=-1min&format=json&target='
         datapoints = json.loads(urllib2.urlopen(url + metric_name).read())[0]['datapoints']
-        # average value in last 1 min
-        value = [p[0] for p in datapoints if p[0] is not None][-1]
-        value = float('%.2f' % value)
+        last_value = [p[0] for p in datapoints if p[0] is not None][-1]
+        value = float('%.2f' % last_value)
     except Exception, e:
         print e
         value = -9999
