@@ -88,7 +88,7 @@ function activateCircle(circle) {
                 messages.push({'plugin' : plugin, 'path' : target['path'], 'max' : target['max'], 'min' : target['min'], 'curr' : metric_value, 'status' : ok});
             }, 'json');
         }
-        consoe.log('ok' + ok);
+        console.log('ok' + ok);
         if(!ok)
             bigBang(circle);
     }, parseInt(Math.random() * 1000) + 2000);
