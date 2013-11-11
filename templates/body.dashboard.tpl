@@ -71,12 +71,12 @@ var defAttr = function(obj) {
 }
 
 function activateCircle(circle) {
+    var plugin = circle.id;
+    var targets = targets_all[plugin];
     setInterval(function() {
-        var plugin = circle.id;
-        var targets = targets_all[plugin];
         for(var count = 0; count < targets.length; count++) {
-            var target = targets[count];
-            var url = '/metric_value/' + target['path'];
+            target = targets[count];
+            url = '/metric_value/' + target.path;
             $.get(url, function(metric_value){
                 var ok = true;
                 //target['curr'] = metric_value;

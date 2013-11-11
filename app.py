@@ -41,7 +41,7 @@ def load_plugins():
                     if matched_dict.has_key(m): continue
                     if re.search(t.get('reg'), m):
                         matched_dict[m] = True
-                        matched.insert(0, {'desc':str(m),'path':str(m),'max':t['max'],'min':t['min']})
+                        matched.insert(0, {'path':str(m),'max':t['max'],'min':t['min']})
             targets_all[module] = matched
             logging.info('Loading plugin - %s', module)
         except Exception, e:
