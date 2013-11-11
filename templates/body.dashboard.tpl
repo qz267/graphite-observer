@@ -80,15 +80,15 @@ function activateCircle(circle) {
         for(var count = 0; count < targets.length; count++) {
             var target = targets[count];
             var url = '/metric_value/' + target['path'];
-            console.log(target['path']);
             $.get(url, function(metric_value){
                 target['curr'] = metric_value;
-                //messages.push({'name' : circle.id, 'value' : metric_value});
                 if ( metric_value < target.min || metric_value > target.max) {
-                    ok = false;
+                    var ok = false;
                 }
+                messages.push({'plugin' : plugin, 'path' : target['path'], 'max' : target['max'], 'min' : target['min'], 'curr' : metric_value, 'status' : ok});
             }, 'json');
         }
+        consoe.log('ok' + ok);
         if(!ok)
             bigBang(circle);
     }, parseInt(Math.random() * 1000) + 2000);
@@ -118,29 +118,27 @@ function bigBang(circle) {
     });
 }
 
-function createMessage() {
-    if (messages.length == 0) return null;
-    var metric = messages.shift();
+function createMessage(target) {
     var el = document.createElement('div');
-    var target = targets_dict[metric.name];
-    if(metric.value > target.min && metric.value < target.max) {
+    if(target.curr > target.min && target.curr < target.max) {
         el.className = 'message';
         level = "info";
-    } else if (metric.value == target.min || metric.value == target.max) {
+    } else if (target.curr == target.min || target.curr == target.max) {
         el.className = 'message warning';
         level = "warning";
     } else {
         el.className = 'message critical';
         level = "critical";
     }
-    el.innerHTML = level + " : " + metric.name + ' ' + metric.value;
+    el.innerHTML = level + " : " + target.path + ', min: ' + target.min + ', max: ' + target.max + ', curr: ' + target.curr;
     el.style.fontFamily = 'times';
     return el;
 }
 
 function pushMessage() {
-    var message = createMessage();
-    if(!message) return;
+    if (messages.length == 0) return;
+    var target = messages.shift();
+    var message = createMessage(target);
 
     var filter = $('#filter').val();
     if (! blank_reg.test(filter)) {
