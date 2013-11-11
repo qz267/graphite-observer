@@ -85,10 +85,11 @@ function activateCircle(circle) {
                 if ( metric_value < target.min || metric_value > target.max) {
                     plugins_status[plugin] = false;
                 }
-                console.log(plugins_status[plugin]);
+                //console.log(plugins_status[plugin]);
                 messages.push({'plugin' : plugin, 'path' : target['path'], 'max' : target['max'], 'min' : target['min'], 'curr' : metric_value, 'status' : plugins_status[plugin]});
             }, 'json');
         }
+                console.log(plugins_status[plugin]);
         if(!plugins_status[plugin]) {
             bigBang(circle);
         }
