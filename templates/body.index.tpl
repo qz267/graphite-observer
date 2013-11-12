@@ -18,14 +18,10 @@
     </div>
 </div>
 <div id = 'dashboard_container'>
-% for category in sorted(categories.keys()):
-    % members = categories[category]
+% for plugin in sorted(targets_all.keys()):
     <div class = 'category'>
-        <h3 class = 'category'><b>{{category}}</b> &#187;</h3>
         <ul>
-        % for plugin in sorted(members):
             <li><a href = '/dashboard/{{plugin}}'>{{plugin}}</a></li>
-        % end
         </ul>
     </div>
 % end

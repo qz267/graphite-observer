@@ -3,7 +3,6 @@
     <tr>
         <th>Plugin Belongs To</th>
         <th>Path ( Metric Name )</th>
-        <th>Description</th>
         <th>Max Value</th>
         <th>Min Value</th>
     </tr>
@@ -12,7 +11,6 @@
     <tr>
         <th>{{module}}</th>
         <td>{{t['path']}}</td>
-        <td>{{t['desc']}}</td>
         <td>{{t['max']}}</td>
         <td>{{t['min']}}</td>
     </tr>

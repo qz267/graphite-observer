@@ -84,7 +84,7 @@ span.desc {
 /* logs */
 #logs {
     float: left;
-    width: 60%;
+    width: 55%;
     height: 100%;
     border-right: 1px solid #aaaa33;
 }
@@ -110,33 +110,6 @@ div.warning {
 
 div.critical {
     color: #aa3333;
-}
-
-/* target info */
-#targetinfo {
-    float: left;
-    width: 30%;
-    height: 100%;
-    padding: 20px;
-    color: white;
-}
-
-#targetinfo_table th {
-    width: 50px;
-    text-align: right;
-    color: #aaccaa;
-}
-
-#targetinfo_table td {
-    padding-left: 20px;
-}
-
-#targetinfo_max, #targetinfo_min {
-    color: #77aa77;
-}
-
-#targetinfo_curr {
-    color: yellow;
 }
 
 /* body.debug.tpl */

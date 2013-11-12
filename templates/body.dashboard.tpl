@@ -1,18 +1,7 @@
 <script src="/static/js/JSTweener.js"></script>
 <script>
 
-// generate by python template for ordered display
-var targets = [
-% for t in targets:
-    {{!t}} ,
-% end
-]
-
-// generate by js for quick search
-var targets_dict = {};
-for (var i = 0; i < targets.length; i++) {
-    targets_dict[targets[i].path] = targets[i];
-}
+var targets_all = {{!targets_all}};
 
 const SVG = "http://www.w3.org/2000/svg";
 const XLINK = "http://www.w3.org/1999/xlink";
@@ -23,9 +12,8 @@ var bHeight = document.getElementsByTagName("body")[0].clientHeight;
 var rootHeight = document.defaultView.innerHeight;
 var rootWidth = document.defaultView.innerWidth;
 
-var margin = 120;
+var margin = 80;
 var radius = 40;
-var circles = [];
 
 var focusedCircle;
 var bindedCircle;
@@ -42,6 +30,18 @@ var _ = function(name) {
 var C = function(type) {
     return defAttr(document.createElementNS(SVG, "circle"));
 }
+
+var n16 = function(num) {
+    var str = (parseInt(num, 10)).toString(16);
+    return str.length == 2 ? str : '0' + str;
+};
+
+var randomColor = function() {
+    var r = n16(Math.random() * 64 + 127);
+    var g = n16(Math.random() * 64 + 127);
+    var b = n16(Math.random() * 64 + 127);
+    return '#' + r + g + b;
+};
 
 var defAttr = function(obj) {
     if (obj.definedAttr) return obj;
@@ -70,30 +70,27 @@ var defAttr = function(obj) {
     return obj;
 }
 
-var n16 = function(num) {
-    var str = (parseInt(num, 10)).toString(16);
-    return str.length == 2 ? str : '0' + str;
-}
-
-var randomColor = function() {
-    var r = n16(Math.random() * 64 + 127);
-    var g = n16(Math.random() * 64 + 127);
-    var b = n16(Math.random() * 64 + 127);
-    return '#' + r + g + b;
-};
-
 function activateCircle(circle) {
-    var target = targets_dict[circle.id];
+    var plugin = circle.id;
+    var targets = targets_all[plugin];
+    var target
     setInterval(function() {
-        var url = '/metric_value/' + circle.id;
-        $.get(url, function(metric_value){
-            target['curr'] = metric_value;
-            messages.push({'name' : circle.id, 'value' : metric_value});
-            if(focusedCircle) showTargetInfo();
-            if ( metric_value < target.min || metric_value > target.max) {
-                bigBang(circle);
-            }
-        }, 'json');
+        for(var count = 0; count < targets.length; count++) {
+            target = targets[count];
+            url = '/metric_value/' + target.path;
+            (function(target) {
+                $.get(url).done(function(metric_value){
+                    var ok = true;
+                    //target['curr'] = metric_value;
+                    if ( metric_value < target.min || metric_value > target.max) {
+                        ok = false;
+                        bigBang(circle);
+                    }
+                    info = {'plugin' : plugin, 'path' : target.path, 'max' : target.max, 'min' : target.min, 'curr' : metric_value, 'status' : ok};
+                    messages.push(info);
+                }, 'json');
+            }(target));
+        }
     }, parseInt(Math.random() * 1000) + 2000);
 }
 
@@ -121,47 +118,27 @@ function bigBang(circle) {
     });
 }
 
-function showTargetInfo() {
-    var target = targets_dict[focusedCircle.id];
-    $('#targetinfo_desc').html(target.desc);
-    $('#targetinfo_path').html(target.path);
-    $('#targetinfo_max').html(target.max);
-    $('#targetinfo_min').html(target.min);
-    $('#targetinfo_curr').html(target.curr);
-}
-
-function clearTargetInfo() {
-    $('#targetinfo_desc').html('');
-    $('#targetinfo_path').html('');
-    $('#targetinfo_max').html('');
-    $('#targetinfo_min').html('');
-    $('#targetinfo_curr').html('');
-}
-
-function createMessage() {
-    if (messages.length == 0) return null;
-
-    var metric = messages.shift();
+function createMessage(target) {
     var el = document.createElement('div');
-    var target = targets_dict[metric.name];
-    if(metric.value > target.min && metric.value < target.max) {
+    if(target.curr > target.min && target.curr < target.max) {
         el.className = 'message';
         level = "info";
-    } else if (metric.value == target.min || metric.value == target.max) {
+    } else if (target.curr == target.min || target.curr == target.max) {
         el.className = 'message warning';
         level = "warning";
     } else {
         el.className = 'message critical';
         level = "critical";
     }
-    el.innerHTML = level + " : " + metric.name + ' ' + metric.value;
+    el.innerHTML = level + " : " + target.path + ', min: ' + target.min + ', max: ' + target.max + ', curr: ' + target.curr;
     el.style.fontFamily = 'times';
     return el;
 }
 
 function pushMessage() {
-    var message = createMessage();
-    if(!message) return;
+    if (messages.length == 0) return;
+    var target = messages.shift();
+    var message = createMessage(target);
 
     var filter = $('#filter').val();
     if (! blank_reg.test(filter)) {
@@ -188,7 +165,6 @@ function popMessage() {
 function mouseOverHandler(e) {
     var circle = e.target;
     focusedCircle = circle;
-    showTargetInfo();
 }
 
 function mouseOutHandler(e) {
@@ -197,7 +173,6 @@ function mouseOutHandler(e) {
         focusedCircle = bindedCircle;
     } else {
         focusedCircle = null;
-        clearTargetInfo();
     }
 }
 
@@ -215,8 +190,7 @@ function init() {
     var delayNum = 0.02;
     var x = radius * 2;
     var y = radius * 2;
-    for ( ; count < targets.length; count++) {
-        var target = targets[count];
+    for (var plugin in targets_all) {
         if ( x > rootWidth - margin ) {
             x = radius * 2;
             y += margin;
@@ -226,9 +200,8 @@ function init() {
         circle.cx = x;
         circle.cy = y;
         circle.r = 0;
-        circle.id = target.path;
-        circles.push(circle);
-        circle.style = 'opacity:0.7; fill:' + randomColor();
+        circle.id = plugin;
+        circle.style = 'opacity: 0.7; fill: ' + randomColor();
         _('canvas').appendChild(circle);
         JSTweener.addTween(circle, {
             delay: count * delayNum,
@@ -238,7 +211,7 @@ function init() {
         circle.addEventListener('mouseover', mouseOverHandler, false);
         circle.addEventListener('mouseout', mouseOutHandler, false);
         circle.addEventListener('mousedown', mouseDownHandler, false);
-        createSpan(target.desc, String(x - radius / 2) + 'px', String(y + radius) + 'px');
+        createSpan(plugin, String(x - radius / 2) + 'px', String(y + radius) + 'px');
         activateCircle(circle);
         x += margin;
     }
@@ -255,14 +228,5 @@ function init() {
     <div id = 'logs'>
         <input id = 'filter' type="text" class="input-medium search-query" placeholder="Filter: RegExp">
         <div id = 'messages'></div>
-    </div>
-    <div id = 'targetinfo'>
-        <table id = 'targetinfo_table'>
-            <tr><th>Desc :</th><td id = 'targetinfo_desc'></td></tr>
-            <tr><th>Path :</th><td id = 'targetinfo_path'></td></tr>
-            <tr><th>Max :</th><td id = 'targetinfo_max'></td></tr>
-            <tr><th>Min :</th><td id = 'targetinfo_min'></td></tr>
-            <tr><th>Curr :</th><td id = 'targetinfo_curr'></td></tr>
-        </table>
     </div>
 </div>
