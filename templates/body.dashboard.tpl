@@ -229,13 +229,4 @@ function init() {
         <input id = 'filter' type="text" class="input-medium search-query" placeholder="Filter: RegExp">
         <div id = 'messages'></div>
     </div>
-    <div id = 'targetinfo'>
-        <table id = 'targetinfo_table'>
-            <tr><th>Desc :</th><td id = 'targetinfo_desc'></td></tr>
-            <tr><th>Path :</th><td id = 'targetinfo_path'></td></tr>
-            <tr><th>Max :</th><td id = 'targetinfo_max'></td></tr>
-            <tr><th>Min :</th><td id = 'targetinfo_min'></td></tr>
-            <tr><th>Curr :</th><td id = 'targetinfo_curr'></td></tr>
-        </table>
-    </div>
 </div>

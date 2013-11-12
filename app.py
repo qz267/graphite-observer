@@ -56,17 +56,10 @@ def render_page(body, page='index', **kwargs):
 
 @route('/', method = 'GET')
 @route('/index', method = 'GET')
-@route('/dashboard', method = 'GET')
 def index():
     #body = template('templates/body.index', targets_all = targets_all)
     body = template('templates/body.dashboard', targets_all = targets_all)
     return render_page(body)
-
-
-@route('/dashboard/:plugin', method = 'GET')
-def dashboard(plugin = ''):
-    body = template('templates/body.dashboard', targets = targets_all[plugin])
-    return render_page(body, page = 'dashboard', plugin = plugin)
 
 
 @route('/metric_value/:metric_name', method = 'GET')
