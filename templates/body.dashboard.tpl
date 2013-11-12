@@ -73,21 +73,23 @@ var defAttr = function(obj) {
 function activateCircle(circle) {
     var plugin = circle.id;
     var targets = targets_all[plugin];
+    var target
     setInterval(function() {
         for(var count = 0; count < targets.length; count++) {
             target = targets[count];
             url = '/metric_value/' + target.path;
-            $.get(url, function(metric_value){
-                var ok = true;
-                //target['curr'] = metric_value;
-                if ( metric_value < target.min || metric_value > target.max) {
-                    ok = false;
-                    bigBang(circle);
-                }
-                info = {'plugin' : plugin, 'path' : target.path, 'max' : target.max, 'min' : target.min, 'curr' : metric_value, 'status' : ok};
-                console.log(info);
-                messages.push(info);
-            }, 'json');
+            (function(target) {
+                $.get(url).done(function(metric_value){
+                    var ok = true;
+                    //target['curr'] = metric_value;
+                    if ( metric_value < target.min || metric_value > target.max) {
+                        ok = false;
+                        bigBang(circle);
+                    }
+                    info = {'plugin' : plugin, 'path' : target.path, 'max' : target.max, 'min' : target.min, 'curr' : metric_value, 'status' : ok};
+                    messages.push(info);
+                }, 'json');
+            }(target));
         }
     }, parseInt(Math.random() * 1000) + 2000);
 }
