@@ -12,7 +12,7 @@ var bHeight = document.getElementsByTagName("body")[0].clientHeight;
 var rootHeight = document.defaultView.innerHeight;
 var rootWidth = document.defaultView.innerWidth;
 
-var margin = 80;
+var margin = 100;
 var radius = 40;
 
 var focusedCircle;
@@ -85,9 +85,9 @@ function activateCircle(circle) {
                     if ( metric_value < target.min || metric_value > target.max) {
                         ok = false;
                         bigBang(circle);
+                        info = {'plugin' : plugin, 'path' : target.path, 'max' : target.max, 'min' : target.min, 'curr' : metric_value, 'status' : ok};
+                        messages.push(info);
                     }
-                    info = {'plugin' : plugin, 'path' : target.path, 'max' : target.max, 'min' : target.min, 'curr' : metric_value, 'status' : ok};
-                    messages.push(info);
                 }, 'json');
             }(target));
         }
