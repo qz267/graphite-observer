@@ -51,16 +51,16 @@ var defAttr = function(obj) {
 
     for (var index in xywh) {
         var i = xywh[index];
-        obj.__defineGetter__(i, 
+        obj.__defineGetter__(i,
                 (function(attrName) {
-                 return function() { 
+                 return function() {
                      return this.getAttribute(attrName);
                  }
                  })(i)
             );
-        obj.__defineSetter__(i, 
+        obj.__defineSetter__(i,
                 (function(attrName) {
-                     return function(val) { 
+                     return function(val) {
                          this.setAttribute(attrName, val);
                          return this.getAttribute(attrName);
                      }
@@ -71,28 +71,37 @@ var defAttr = function(obj) {
 }
 
 function activateCircle(circle) {
-    var plugin = circle.id;
-    var targets = targets_all[plugin];
-    var target
-    setInterval(function() {
-        for(var count = 0; count < targets.length; count++) {
-            target = targets[count];
-            (function(target) {
-                url = '/metric_value/' + target.path;
-                $.get(url).done(function(metric_value){
-                    var ok = true;
-                    if ( metric_value < target.min || metric_value > target.max) {
-                        ok = false;
-                        bigBang(circle);
-                        info = {'plugin' : plugin, 'path' : target.path, 'max' : target.max, 'min' : target.min, 'curr' : metric_value, 'status' : ok};
-                        console.log('info', info);
-                        messages.push(info);
-                    }
-                }, 'json');
-            }(target));
-        }
-    //}, parseInt(Math.random() * 1000) + 2000);
-    }, 1000 * 3 );
+  var plugin = circle.id
+    , target, info
+    , targets = targets_all[plugin]
+    , interval = 1000 * (2 + Math.floor(Math.random() * 4))
+
+  setInterval(function(targets) {
+    for (var count = 0; count < targets.length; count++) {
+      target = targets[count]
+      ;(function(target) {
+        url = '/metric_value/' + target.path
+        $.get(url).done(function(metric_value) {
+          var ok = true
+          if (metric_value < target.min
+            || metric_value > target.max) {
+              ok = false
+              bigBang(circle)
+              info = {
+                plugin: plugin
+              , path: target.path
+              , max: target.max
+              , min: target.min
+              , curr: metric_value
+              , status: ok
+              }
+              console.info(info)
+              messages.push(info)
+          }
+        }, 'json')
+      }(target))
+    }
+  }, interval, targets)
 }
 
 function createSpan(text, left, top) {
