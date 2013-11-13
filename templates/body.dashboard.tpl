@@ -74,7 +74,7 @@ function activateCircle(circle) {
     var plugin = circle.id
         , target, info
         , targets = targets_all[plugin]
-        , interval = 1000 * (2 + Math.floor(Math.random() * 4))
+        , interval = 1000 * (3 + Math.floor(Math.random() * 4))
 
     setInterval(function(targets) {
         for (var count = 0; count < targets.length; count++) {
