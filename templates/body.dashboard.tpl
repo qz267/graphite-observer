@@ -71,37 +71,36 @@ var defAttr = function(obj) {
 }
 
 function activateCircle(circle) {
-  var plugin = circle.id
-    , target, info
-    , targets = targets_all[plugin]
-    , interval = 1000 * (2 + Math.floor(Math.random() * 4))
+    var plugin = circle.id
+        , target, info
+        , targets = targets_all[plugin]
+        , interval = 1000 * (2 + Math.floor(Math.random() * 4))
 
-  setInterval(function(targets) {
-    for (var count = 0; count < targets.length; count++) {
-      target = targets[count]
-      ;(function(target) {
-        url = '/metric_value/' + target.path
-        $.get(url).done(function(metric_value) {
-          var ok = true
-          if (metric_value < target.min
-            || metric_value > target.max) {
-              ok = false
-              bigBang(circle)
-              info = {
-                plugin: plugin
-              , path: target.path
-              , max: target.max
-              , min: target.min
-              , curr: metric_value
-              , status: ok
-              }
-              console.info(info)
-              messages.push(info)
-          }
-        }, 'json')
-      }(target))
-    }
-  }, interval, targets)
+    setInterval(function(targets) {
+        for (var count = 0; count < targets.length; count++) {
+            target = targets[count];
+            (function(target) {
+                url = '/metric_value/' + target.path;
+                $.get(url).done(function(metric_value) {
+                    var ok = true;
+                    if (metric_value < target.min || metric_value > target.max) {
+                        ok = false
+                        bigBang(circle)
+                        info = {
+                              plugin: plugin
+                            , path: target.path
+                            , max: target.max
+                            , min: target.min
+                            , curr: metric_value
+                            , status: ok
+                        };
+                        console.info(info)
+                        messages.push(info)
+                    }
+                }, 'json')
+            }(target))
+        }
+    }, interval, targets)
 }
 
 function createSpan(text, left, top) {
