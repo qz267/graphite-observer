@@ -77,21 +77,22 @@ function activateCircle(circle) {
     setInterval(function() {
         for(var count = 0; count < targets.length; count++) {
             target = targets[count];
-            url = '/metric_value/' + target.path;
             (function(target) {
+                url = '/metric_value/' + target.path;
                 $.get(url).done(function(metric_value){
                     var ok = true;
-                    //target['curr'] = metric_value;
                     if ( metric_value < target.min || metric_value > target.max) {
                         ok = false;
                         bigBang(circle);
                         info = {'plugin' : plugin, 'path' : target.path, 'max' : target.max, 'min' : target.min, 'curr' : metric_value, 'status' : ok};
+                        console.log('info', info);
                         messages.push(info);
                     }
                 }, 'json');
             }(target));
         }
-    }, parseInt(Math.random() * 1000) + 2000);
+    //}, parseInt(Math.random() * 1000) + 2000);
+    }, 1000 * 3 );
 }
 
 function createSpan(text, left, top) {
@@ -130,7 +131,7 @@ function createMessage(target) {
         el.className = 'message critical';
         level = "critical";
     }
-    el.innerHTML = level + " : " + target.path + ', min: ' + target.min + ', max: ' + target.max + ', curr: ' + target.curr;
+    el.innerHTML = level + " : <a target = '_blank' href = '" + "{{config.graphite_url}}" + "/render?target=" + target.path + "'>" + target.path + "</a>, min: " + target.min + ", max: " + target.max + ", curr: " + target.curr;
     el.style.fontFamily = 'times';
     return el;
 }

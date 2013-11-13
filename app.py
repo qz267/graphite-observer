@@ -58,7 +58,7 @@ def render_page(body, page='index', **kwargs):
 @route('/index', method = 'GET')
 def index():
     #body = template('templates/body.index', targets_all = targets_all)
-    body = template('templates/body.dashboard', targets_all = targets_all)
+    body = template('templates/body.dashboard', targets_all = targets_all, config = config)
     return render_page(body)
 
 
