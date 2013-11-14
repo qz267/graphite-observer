@@ -86,17 +86,17 @@ function activateCircle(circle) {
                     if (metric_value < target.min || metric_value > target.max) {
                         ok = false
                         bigBang(circle)
-                        info = {
-                              plugin: plugin
-                            , path: target.path
-                            , max: target.max
-                            , min: target.min
-                            , curr: metric_value
-                            , status: ok
-                        };
-                        console.info(info)
-                        messages.push(info)
                     }
+                    info = {
+                          plugin: plugin
+                        , path: target.path
+                        , max: target.max
+                        , min: target.min
+                        , curr: metric_value
+                        , status: ok
+                    };
+                    console.info(info)
+                    messages.push(info)
                 }, 'json')
             }(target))
         }
